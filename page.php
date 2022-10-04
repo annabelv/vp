@@ -1,6 +1,6 @@
 <?php
 	//loen sisse konfiguratiooni faili
-	require_once "../config.php";
+	require_once "../../config.php";
 	//echo $server_user_name;
 	
 	$author_name = "Annabel Väljaots";

@@ -1,6 +1,6 @@
 <?php
 //loen sisse konfiguratiooni faili
-	require_once "../config.php";
+	require_once "../../config.php";
 $year_now = date("Y");
 
 $title_error = null;
