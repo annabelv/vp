@@ -1,6 +1,8 @@
 <?php
-	//loen sisse konfiguratiooni faili
-	require_once "../../config.php";
+	// algatas sessiooni
+	session_start();
+	//loen sisse konfiguratsioonifaili
+	require_once "fnc_user.php";
 	//echo $server_user_name;
 	
 	$author_name = "Annabel Väljaots";
@@ -170,6 +172,10 @@
 			$conn->close();
 		}
 	}
+	$login_error = null;
+	if(isset($_POST["login_submit"])){
+        $login_error = sign_in($_POST["email_input"], $_POST["password_input"]);
+    }
 	
 ?>
 <!DOCTYPE html>
@@ -183,6 +189,15 @@
 	<h1><?php echo $author_name; ?>, veebiprogrammeerimine</h1>
 	<p>See leht on loodud õppetöö raames ega sisalda tõsist infot.</p>
 	<p>Õppetöö toimus <a href="https://www.tlu.ee">Tallinna Ülikoolis</a> Digitehnoloogiate Instituudis.</p>
+	<hr>
+	<h2>Logi sisse</h2>
+	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+		<input type="email" name="email_input" placeholder="Kasutajatunnus ehk e-post">
+		<input type="password" name="password_input" placeholder="salasõna">
+		<input type="submit" name="login_submit" value="Logi sisse"><span><strong><?php echo $login_error; ?></strong></span>
+	</form>
+	<p><a href="add_user.php">Loo kasutaja</a></p>
+	<hr>
 	<p>Lehe avamise hetk: <?php echo $weekday_names_et[$weekday_now - 1]. ", ". $full_time_now; ?>.</p>
 	<p>Praegu on <?php echo $part_of_day; ?>.</p>
 	
@@ -219,5 +234,4 @@
 	<p>Semester edeneb: <?php echo $from_semester_begin_days ."/" . $semester_duration_days; ?></p>
 	<img src="pics/tlu_41.jpg" alt="Tallinna Ülikooli Astra õppehoone">
 	<p>Üritamas kodus ka midagi lisada.</p>
-</body>
-</html>
+<?php require_once "footer.php"; ?>
