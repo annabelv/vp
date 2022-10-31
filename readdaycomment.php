@@ -1,5 +1,5 @@
 <?php
-	require_once "../config.php";
+	require_once "../../config.php";
 	
 	//loome andmebaasi ühenduse
 	$conn = new mysqli($server_host, $server_user_name, $server_password, $database);
@@ -38,6 +38,7 @@
 	<title>Annabel Väljaots, veebiprogrammeerimine</title>
 </head>
 <body>
+	<img src="pics/banner.png" alt="Veebiprogrammeerimise banner">
 	<h1>Annabel Väljaots, veebiprogrammeerimine</h1>
 	<p>See leht on loodud õppetöö raames ega sisalda tõsist infot.</p>
 	<p>Õppetöö toimus <a href="https://www.tlu.ee">Tallinna Ülikoolis</a> Digitehnoloogiate Instituudis.</p>

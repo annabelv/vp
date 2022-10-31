@@ -185,7 +185,7 @@
 	<title><?php echo $author_name; ?>, veebiprogrammeerimine</title>
 </head>
 <body>
-	<img src="veebiproge/banner" alt="Veebiprogrammeerimise banner">
+	<img src="pics/banner.png" alt="Veebiprogrammeerimise banner">
 	<h1><?php echo $author_name; ?>, veebiprogrammeerimine</h1>
 	<p>See leht on loodud õppetöö raames ega sisalda tõsist infot.</p>
 	<p>Õppetöö toimus <a href="https://www.tlu.ee">Tallinna Ülikoolis</a> Digitehnoloogiate Instituudis.</p>

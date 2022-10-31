@@ -99,7 +99,8 @@
 				// salvetsame andmetabelisse
 				$notice = sign_up($first_name, $last_name, $birth_date, $gender, $email, $_POST["password_input"]);
 				if($notice == 1) {
-					$notice = null;
+					$notice = "Uus kasutaja loodud!";
+					//$notice = null;
 					$first_name = null;
 					$last_name = null;
 					$email = null;
@@ -108,10 +109,13 @@
 					$birth_year = null;
 					$birth_day = null;
 					$birth_date = null;
-					$notice = "Uus kasutaja loodud!";
-				}/*  else {
-					$notice = "Kasutaja loomisel tekkis tõrge";
-				} */
+				}else {			
+					if ($notice == 2) {
+						$notice = "Selline kasutaja on juba olemas!";
+					} else {
+						$notice = "Uue kasutaja loomisel tekkis tõrge!";
+					}
+				} 
 			}
 		} //if sumbit lõppeb
 	} // if POST lõppeb
@@ -124,7 +128,7 @@
 	
   </head>
   <body>
-	
+	<img src="pics/banner.png" alt="Veebiprogrammeerimise banner">
 	<hr>
     <h2>Loo endale kasutajakonto</h2>
 		
