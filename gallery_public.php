@@ -16,7 +16,7 @@
 	require_once "fnc_gallery.php";
 	$privacy = 2;
 	$page = 1;
-	$limit = 3;
+	$limit = 5;
 	$photo_count = count_photos($privacy);
 	//kontrollime, mis lehel ja kas see on võimalik
 	if(!isset($_GET["page"]) or $_GET["page"] < 1){

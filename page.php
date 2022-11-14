@@ -176,6 +176,7 @@
 	if(isset($_POST["login_submit"])){
         $login_error = sign_in($_POST["email_input"], $_POST["password_input"]);
     }
+	require_once "fnc_gallery.php";
 	
 ?>
 <!DOCTYPE html>
@@ -199,6 +200,12 @@
 	<p><a href="add_user.php">Loo kasutaja</a></p>
 	<hr>
 	<p>Lehe avamise hetk: <?php echo $weekday_names_et[$weekday_now - 1]. ", ". $full_time_now; ?>.</p>
+	
+	<h2>Kasutajate üleslaetud fotod</h2>
+	
+	<?php echo show_public_photos(); ?>
+	
+	
 	<p>Praegu on <?php echo $part_of_day; ?>.</p>
 	
 	<!--päeva kommentaaride lisamise vorm -->

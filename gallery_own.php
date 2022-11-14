@@ -16,7 +16,7 @@
 	require_once "fnc_gallery.php";
 	
 	$page = 1;
-	$limit = 3;
+	$limit = 5;
 	$photo_count = count_own_photos();
 	//kontrollime, mis lehel ja kas see on võimalik
 	if(!isset($_GET["page"]) or $_GET["page"] < 1){
@@ -27,6 +27,8 @@
 	} else {
 		$page = $_GET["page"];
 	}
+	
+	$_SESSION["gallery_own_page"] = $page;
 	
 	$style_sheets = "styles/gallery.css";
 	require_once "header.php";

@@ -22,5 +22,6 @@
 	<li>Fotode galeriisse <a href="gallery_foto_upload.php">lisamine</a></li>
 	<li><a href="gallery_public.php">Avalike fotode galerii</a></li>
 	<li><a href="gallery_own.php">Minu fotod</a></li>
+	<li><a href="user_profile.php">Muuda profiili</a></li>
 </ul>
 <?php require_once "footer.php"; ?>
