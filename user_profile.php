@@ -6,6 +6,14 @@
 		header("Location: page.php");
 		exit();
 	}
+	
+	//logime välja
+	if(isset($_GET["logout"])){
+		session_destroy();
+		header("Location: page.php");
+		exit();
+	}
+	
 	require_once "header.php";
 	require_once "fnc_user.php";
 	
@@ -18,6 +26,7 @@
 	
 	$bg_color_error = null;
 	$txt_color_error = null;
+	$description_error = null;
 	
 	if(isset($_POST["color_submit"])){
 		if(isset($_POST["bg_color_input"]) and !empty($_POST["bg_color_input"])){
@@ -38,6 +47,8 @@
 	if(isset($_POST["color_submit"])){
 		if(isset($_POST["description_input"]) and !empty($_POST["description_input"])){
 			$description = $_POST["user_description"];
+		} else {
+			$description_error = "Lisage lühikirjeldus!";
 		}
 	}
 	

@@ -13,8 +13,10 @@
 		exit();
 	}
 	
+	require_once "../../config.php";
 	require_once "fnc_photo_upload.php";
 	require_once "fnc_general.php";
+	require_once "classes/Photoupload.class.php";
 	
 	//kontrollin pildi valikut
 	$file_type = null;
@@ -52,27 +54,24 @@
 				//loon uue failinime
 				$file_name = create_filename($photo_name_prefix, $file_type);
 				
+				//klass
+				$upload = new Photoupload($_FILES["photo_input"]);
+				
 				//teen (väiksema) normaalmõõdus pildi
-				//loome pikslikogumi ehk image objekti
-				$temp_photo = create_image($_FILES["photo_input"]["tmp_name"], $file_type);
-				//teeme väiksemaks
-				$normal_photo = resize_photo($temp_photo, $normal_photo_max_w, $normal_photo_max_h);
+				$upload->resize_photo($normal_photo_max_w, $normal_photo_max_h);
 				//salvestan väiksemaks tehtud pildi
-				$photo_error = save_photo($normal_photo, $gallery_photo_normal_folder .$file_name, $file_type);
-				if(empty($photo_error)){
-					//teeme pisipildi (thumbnail)
-					$thumbnail = resize_photo($temp_photo, $thumbnail_photo_w, $thumbnail_photo_h, false);
-					$photo_error = save_photo($thumbnail, $gallery_photo_thumbnail_folder .$file_name, $file_type);
+				$upload->save_photo($gallery_photo_normal_folder .$file_name, $upload->file_type);
+				if(empty($upload->error)){
+					$upload->resize_photo($thumbnail_photo_w, $thumbnail_photo_h, false);
+					$upload->save_photo($gallery_photo_thumbnail_folder .$file_name, $upload->file_type);
 				}
 				//tõstan ajutise pildifaili oma soovitud kohta
 				//move_uploaded_file($_FILES["photo_input"]["tmp_name"], "photo_upload_original/" .$_FILES["photo_input"]["name"]);
-				if(empty($photo_error)){
+				if(empty($upload->error)){
 					// ajutine fail: $_FILES["photo_input"]["tmp_name"]
-					if(move_uploaded_file($_FILES["photo_input"]["tmp_name"], $gallery_photo_original_folder .$file_name) == false){
-						$photo_error = 1;
-					}
+					$upload->move_original_photo($gallery_photo_original_folder .$file_name);
 				}
-				if(empty($photo_error)){
+				if(empty($upload->error)){
 					$photo_error = store_photo_data($file_name, $alt, $privacy);
 				}
 				if(empty($photo_error)){
@@ -82,6 +81,9 @@
 				} else {
 					$photo_error = "Pildi üleslaadimisel tekkis tõrkeid!";
 				}
+				
+				unset($upload);
+				
 			}//if empty error
 		}//if photo_submit
 	}//if POST
@@ -95,7 +97,6 @@
 	<li>Tagasi <a href="home.php">avalehele</a></li>
 	
 </ul>
-	</ul>
 	<hr>
 	<h2>Fotode galeriisse laadimine</h2>
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">

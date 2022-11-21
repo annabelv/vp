@@ -3,7 +3,16 @@
 	session_start();
 	//loen sisse konfiguratsioonifaili
 	require_once "fnc_user.php";
+	require_once "fnc_gallery.php";
 	//echo $server_user_name;
+	//klass
+	/* require_once "classes/Example.class.php";
+	$our_example = new Example(3); //arvud on mõlemal suvalised
+	$my_example = new Example(5);
+	echo $our_example->known_value ."<br>";
+	$my_example->add();
+	unset($our_example);
+	unset($my_example); */
 	
 	$author_name = "Annabel Väljaots";
 	//echo $author_name;
@@ -114,7 +123,7 @@
 	// $_POST
 	//var_dump($_POST);
 	$adjective_html = null;
-	if(isset($_POST["todays_adjective_input"]) and !empty ($_POST["todays_adjective_input"])){
+	if(isset($_POST["todays_adjective_input"]) and !empty($_POST["todays_adjective_input"])){
 		$adjective_html = "<p>Tänase kohta on arvatud: " .$_POST["todays_adjective_input"] .".</p>";
 	}
 	
@@ -142,11 +151,11 @@
 	
 	$comment_error = null;
 	//tegeleme päevale antud hinde ja kommentaariga       teine if, kui ei kirjutata kommentaari
-	if (isset($_POST["comment_submit"])){
+	if(isset($_POST["comment_submit"])){
 		if(isset($_POST["comment_input"]) and !empty($_POST["comment_input"])){
 			$comment = $_POST["comment_input"];
 		} else {
-			$comment_error = "Kommentaar jäi lisamata.";
+			$comment_error = "Kommentaar jäi lisamata!";
 		}
 		$grade = $_POST["grade_input"];
 		
@@ -203,7 +212,7 @@
 	
 	<h2>Kasutajate üleslaetud fotod</h2>
 	
-	<?php echo show_public_photos(); ?>
+	<?php echo show_public_photo(); ?>
 	
 	
 	<p>Praegu on <?php echo $part_of_day; ?>.</p>

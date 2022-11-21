@@ -14,7 +14,7 @@
 			// <link rel="stylesheet" href="styles/gallery.css"
 			echo '<link rel="stylesheet" href ="' .$style_sheets .'">' ."\n";
 		}
-		require_once "user_profile.php";
+		//require_once "user_profile.php";
 	?>
 </head>
 <body>
