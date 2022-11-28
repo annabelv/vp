@@ -1,6 +1,8 @@
 <?php
 	// algatas sessiooni
-	session_start();
+	//session_start();
+	require_once"classes/SessionManager.class.php";
+	SessionManager::sessionStart("vp", 0, "~valjanna/vp", "greeny.cs.tlu.ee");
 	//loen sisse konfiguratsioonifaili
 	require_once "fnc_user.php";
 	require_once "fnc_gallery.php";
@@ -212,7 +214,7 @@
 	
 	<h2>Kasutajate üleslaetud fotod</h2>
 	
-	<?php echo show_public_photo(); ?>
+	<?php echo show_latest_public_photo(); ?>
 	
 	
 	<p>Praegu on <?php echo $part_of_day; ?>.</p>

@@ -1,6 +1,7 @@
 <?php
 	require_once "../../config.php";
-	session_start();
+	require_once"classes/SessionManager.class.php";
+	SessionManager::sessionStart("vp", 0, "~valjanna/vp", "greeny.cs.tlu.ee");
 	if(!isset($_SESSION["user_id"])){
 		//jõuga viiakse page.php lehele
 		header("Location: page.php");
