@@ -61,7 +61,7 @@
 					$alt = null;
 					$privacy = 1;
 				} else {
-					$photo_error .= $upload->errpr;
+					$photo_error .= $upload->error;
 				}
 				unset($upload);
 			} else {
@@ -72,6 +72,9 @@
 		}//if photo_submit
 	}//if POST
 	
+	//HTML-i sidumine javascriptiga
+	//<script src="javascript.js" defer></script>
+	$javascripts = ["javascript/check_file_size.js"];
 	require_once "header.php";
 	
 	echo "<p>Sisse loginud: " .$_SESSION["firstname"] ." " .$_SESSION["lastname"] .".</p> \n";

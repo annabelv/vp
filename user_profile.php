@@ -20,6 +20,7 @@
 	
 	echo "<p>Sisse loginud: " .$_SESSION["firstname"] ." " .$_SESSION["lastname"] .".</p> \n";
 	
+	//tegeleme tausta- ja tekstivärvidega
 	$bg_color = $_SESSION["user_bg_color"];
 	$txt_color = $_SESSION["user_txt_color"];
 	
@@ -75,6 +76,9 @@
 			$conn->close(); 
 	}
 
+
+	//tegeleme profiili pildiga
+	
 ?>
 
 
